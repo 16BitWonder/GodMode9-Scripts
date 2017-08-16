@@ -1,0 +1,11 @@
+# gbavc.sav backup GM9 script
+# This will create a backup of your current gbavc.sav
+# author: 8BitWonder
+# credits: d0k3 (For the scripts I referenced when making this, and GM9)
+
+set ERRORMSG      "gbavc.sav backup failed"
+
+ask "Create a gbavc.sav backup in $[GM9OUT]? \n(This will overwrite any existing gbavc.sav!)"
+set OUTPATH 0:/gm9/out/gbavc.sav
+cp -w S:/gbavc.sav $[OUTPATH]
+echo "Backup created succesfully:\n$[OUTPATH]"

@@ -1,0 +1,11 @@
+# gbavc.sav restore GM9 script
+# This will restore your current gbavc.sav from GM9OUT
+# author: 8BitWonder
+# credits: d0k3 (For the scripts I referenced when making this, and GM9)
+
+set ERRORMSG      "gbavc.sav restore failed"
+
+ask "Restore gbavc.sav from $[GM9OUT]? \n(Your save must be for the last gba vc you launched!)\n(Your gbavc.sav must also be 64KB!)"
+set OUTPATH S:/gbavc.sav
+cp -w 0:/gm9/out/gbavc.sav $[OUTPATH]
+echo "gbavc.sav restored succesfully:\n$[OUTPATH]"
