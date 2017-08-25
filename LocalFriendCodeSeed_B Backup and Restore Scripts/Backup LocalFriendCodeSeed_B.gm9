@@ -1,0 +1,11 @@
+# LocalFriendCodeSeed_B backup GM9 script
+# This will create a backup of your current LocalFriendCodeSeed_B
+# author: 8BitWonder
+# credits: d0k3 (For the scripts I referenced when making this, and GM9)
+
+set ERRORMSG      "LocalFriendCodeSeed_B backup failed"
+
+ask "Create a LocalFriendCodeSeed_B backup in $[GM9OUT]? \n(This will overwrite any existing\nLocalFriendCodeSeed_B!)"
+set OUTPATH 0:/gm9/out/LocalFriendCodeSeed_B
+cp -w 1:/rw/sys/LocalFriendCodeSeed_B $[OUTPATH]
+echo "Backup created succesfully:\n$[OUTPATH]"
