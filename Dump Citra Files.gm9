@@ -1,0 +1,42 @@
+# Citra files dump GM9 script
+# This will create a dump of files and folders citra uses (config, system archives, shared fonts)
+# author: 8BitWonder
+# credits: d0k3 (For the scripts I referenced when making this, and GM9)
+
+set ERRORMSG      "Citra files dump failed"
+
+ask "Create dump of Citra files in $[GM9OUT]/Citra? \n(This will overwrite any existing Citra files!)\n(May fail if you use a custom font!)\n(This will dump System Archives)\n(This will dump Shared Fonts)\n(This will dump config)"
+
+# Begin Create Citra File Structure
+mkdir 0:/gm9/out/Citra/user/nand/data/00000000000000000000000000000000/sysdata/00010017/00000000
+mkdir 0:/gm9/out/Citra/user/nand/00000000000000000000000000000000/title/000400db/00010302/content
+mkdir 0:/gm9/out/Citra/user/nand/00000000000000000000000000000000/title/0004009b/00010202/content
+mkdir 0:/gm9/out/Citra/user/nand/00000000000000000000000000000000/title/0004009b/00010402/content
+mkdir 0:/gm9/out/Citra/user/nand/00000000000000000000000000000000/title/0004009b/00014002/content
+# End Create Citra File Structure
+
+# Begin Citra Config Dump
+set OUTCONFIG 0:/gm9/out/Citra/user/nand/data/00000000000000000000000000000000/sysdata/00010017/00000000/config
+inject 1:/data/$[SYSID0]/sysdata/00010017/00000000@6000:8000 $[OUTCONFIG]@0
+# End Citra Config Dump
+
+# Begin Citra System Archives and Shared Fonts Dump
+set OUTONE 0:/gm9/out/Citra/user/nand/00000000000000000000000000000000/title/0004009b/00010202/content/00000000.app.romfs
+set OUTTWO 0:/gm9/out/Citra/user/nand/00000000000000000000000000000000/title/0004009b/00010402/content/00000000.app.romfs
+set OUTTHREE 0:/gm9/out/Citra/user/nand/00000000000000000000000000000000/title/0004009b/00014002/content/00000000.app.romfs
+set OUTFOUR 0:/gm9/out/Citra/user/nand/00000000000000000000000000000000/title/000400db/00010302/content/00000000.app.romfs
+imgmount 1:/title/0004009b/00010202/content/00000000.app
+inject G:/romfs.bin@1000:108898 $[OUTONE]@0
+imgumount
+imgmount 1:/title/0004009b/00010402/content/00000009.app
+inject G:/romfs.bin@1000:357A0 $[OUTTWO]@0
+imgumount
+imgmount 1:/title/0004009b/00014002/content/00000000.app
+inject G:/romfs.bin@1000:160FDB $[OUTTHREE]@0
+imgumount
+imgmount 1:/title/000400db/00010302/content/0000000c.app
+inject G:/romfs.bin@1000:1D0E4 $[OUTFOUR]@0
+imgumount
+# End Citra System Archives and Shared Fonts Dump
+
+echo "Dump created succesfully:\n$[GM9OUT]/Citra"

@@ -1,0 +1,13 @@
+# Boot9 & Boot11 dump GM9 script
+# This will create a dump of your boot9.bin and boot11.bin
+# author: 8BitWonder
+# credits: d0k3 (For the scripts I referenced when making this, and GM9)
+
+set ERRORMSG      "Bootrom dumps failed"
+
+ask "Create boot9 & boot11 dumps in $[GM9OUT]? \n(This will overwrite any existing boot9 & boot11!)"
+set OUTPATH9 0:/gm9/out/boot9.bin
+set OUTPATH11 0:/gm9/out/boot11.bin
+cp -w M:/boot9.bin $[OUTPATH9]
+cp -w M:/boot11.bin $[OUTPATH11]
+echo "Dumps created succesfully:\n$[OUTPATH9]\n$[OUTPATH11]"

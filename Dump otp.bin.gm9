@@ -1,0 +1,11 @@
+# Otp.bin dump GM9 script
+# This will create a dump of your system's otp.bin
+# author: 8BitWonder
+# credits: d0k3 (For the scripts I referenced when making this, and GM9)
+
+set ERRORMSG      "otp.bin dump failed"
+
+ask "Dump otp.bin in $[GM9OUT]? \n(This will overwrite any existing otp.bin!)"
+set OUTPATH 0:/gm9/out/otp.bin
+cp -w M:/otp.mem $[OUTPATH]
+echo "Dump created succesfully:\n$[OUTPATH]"
