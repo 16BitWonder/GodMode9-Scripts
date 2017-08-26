@@ -1,0 +1,12 @@
+# Cartridge Dump Private Header GM9 script
+# This will dump your CTR cartridge's private header in 0:/gm9/out
+# author: 8BitWonder
+# credits: d0k3 (For the scripts I referenced when making this, and GM9)
+
+set ERRORMSG      "Private header dump failed"
+
+ask "Dump private header in $[GM9OUT]?"
+find C:/*priv.bin CARTPATH
+findnot $[GM9OUT]/Private-Header_???.bin OUTPATH
+cp $[CARTPATH] $[OUTPATH]
+echo "Private header dumped succesfully:\n$[OUTPATH]"

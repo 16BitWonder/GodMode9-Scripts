@@ -1,0 +1,13 @@
+# Cartridge Dump .3ds (dec) GM9 script
+# This will dump your CTR cartridge as a decrypted .3ds in 0:/gm9/out
+# author: 8BitWonder
+# credits: d0k3 (For the scripts I referenced when making this, and GM9)
+
+set ERRORMSG      "CTR cartridge dump failed"
+
+ask "Dump CTR cartridge as a decrypted .3ds in $[GM9OUT]?"
+find C:/*.3ds CARTPATH
+findnot $[GM9OUT]/$[DATESTAMP]_CTR_CARTDUMP_???.3ds OUTPATH
+cp $[CARTPATH] $[OUTPATH]
+decrypt $[OUTPATH]
+echo "CTR cartridge dumped succesfully:\n$[OUTPATH]"

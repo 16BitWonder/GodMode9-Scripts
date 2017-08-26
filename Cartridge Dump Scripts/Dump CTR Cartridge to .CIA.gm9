@@ -1,0 +1,11 @@
+# Cartridge Dump .cia GM9 script
+# This will dump your CTR cartridge as a .cia in 0:/gm9/out
+# author: 8BitWonder
+# credits: d0k3 (For the scripts I referenced when making this, and GM9)
+
+set ERRORMSG      "CTR cartridge dump failed"
+
+ask "Dump CTR cartridge as a .cia in $[GM9OUT]?"
+find C:/*.3ds CARTPATH
+buildcia $[CARTPATH]
+echo "CTR cartridge dumped succesfully:\n$[GM9OUT]"
