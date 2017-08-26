@@ -6,6 +6,6 @@
 set ERRORMSG      "LocalFriendCodeSeed_B backup failed"
 
 ask "Create a LocalFriendCodeSeed_B backup in $[GM9OUT]? \n(This will overwrite any existing\nLocalFriendCodeSeed_B!)"
-set OUTPATH 0:/gm9/out/LocalFriendCodeSeed_B
+set OUTPATH $[GM9OUT]/$[SERIAL]_LocalFriendCodeSeed_B
 cp -w 1:/rw/sys/LocalFriendCodeSeed_B $[OUTPATH]
 echo "Backup created succesfully:\n$[OUTPATH]"
