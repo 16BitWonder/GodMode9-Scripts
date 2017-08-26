@@ -6,6 +6,6 @@
 set ERRORMSG      "otp.bin dump failed"
 
 ask "Dump otp.bin in $[GM9OUT]? \n(This will overwrite any existing otp.bin!)"
-set OUTPATH 0:/gm9/out/otp.bin
+set OUTPATH $[GM9OUT]/$[SERIAL]_otp.bin
 cp -w M:/otp.mem $[OUTPATH]
 echo "Dump created succesfully:\n$[OUTPATH]"
