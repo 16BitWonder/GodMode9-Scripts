@@ -7,5 +7,6 @@ set ERRORMSG      "LocalFriendCodeSeed_B restore failed"
 
 ask "Restore LocalFriendCodeSeed_B from $[GM9OUT]? \n(This will overwrite your 3DS's current\nLocalFriendCodeSeed_B!)"
 set OUTPATH 1:/rw/sys/LocalFriendCodeSeed_B
-cp -w 0:/gm9/out/LocalFriendCodeSeed_B $[OUTPATH]
+find $[GM9OUT]/*LocalFriendCodeSeed_B COPYPATH
+cp -w $[COPYPATH] $[OUTPATH]
 echo "LocalFriendCodeSeed_B restored succesfully:\n$[OUTPATH]"
