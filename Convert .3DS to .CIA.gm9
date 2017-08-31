@@ -1,0 +1,14 @@
+# Convert .3ds to .cia GM9 script
+# This will convert the user selected .3ds in gm9/out to a .cia in gm9/out
+# author: 8BitWonder
+# credits: d0k3 (For the scripts I referenced when making this, and GM9)
+
+set ERRORMSG      "Conversion failed"
+
+ask "Convert .3ds to .cia in $[GM9OUT]?\n(You must have appeneded _### to your .3ds!)"
+set NUM "000"
+input "Convert which .3ds?\n(Enter the triple-digit number!)\n(Ex: 000, 001, 002, etc.)" NUM
+find $[GM9OUT]/*_$[NUM].3ds 3DSPATH
+buildcia $[3DSPATH]
+find $[GM9OUT]/*_$[NUM].cia CIAPATH
+echo ".3ds converted succesfully:\n$[CIAPATH]"
