@@ -1,0 +1,16 @@
+# Dump installed title to .cia GM9 script
+# This will dump the user selected title to a .cia (Can be game, update or dlc)
+# author: 8BitWonder
+# credits: d0k3 (For the scripts I referenced when making this, and GM9)
+
+set ERRORMSG      "Title dump failed"
+
+ask "Dump installed title to .cia in $[GM9OUT]?"
+set NUM1 "00040000"
+set NUM2 "00000000"
+input "What type of title are you dumping?\n(This is NOT case sensitive)\n(00040000 = Game)\n(0004000E = Update)\n(0004008C = DLC)" NUM1
+input "Enter 8 digits of the title you are dumping.\n(This is NOT case sensitive)\n(This identifies the Game/Update/DLC)" NUM2
+find A:/title/$[NUM1]/$[NUM2]/content/*.tmd TITLEPATH
+buildcia $[TITLEPATH]
+find $[GM9OUT]/$[NUM1]$[NUM2]* CIAPATH
+echo "Title dumped succesfully:\n$[CIAPATH]"

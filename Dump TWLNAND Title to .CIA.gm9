@@ -1,0 +1,15 @@
+# Dump twlnand title to .cia GM9 script
+# This will dump the user selected twlnand title to a .cia
+# author: 8BitWonder
+# credits: d0k3 (For the scripts I referenced when making this, and GM9)
+
+set ERRORMSG      "Title dump failed"
+
+ask "Dump TWLNAND title to .cia in $[GM9OUT]?"
+set NUM1 "00030000"
+set NUM2 "00000000"
+input "Enter first 8 digits of the title you are dumping.\n(This is NOT case sensitive)\nYour options are:\n(00030004)\n(00030005)\n(0003000F)" NUM1
+input "Enter last 8 digits of the title you are dumping.\n(This is NOT case sensitive)" NUM2
+find 2:/title/$[NUM1]/$[NUM2]/content/*.tmd TITLEPATH
+buildcia $[TITLEPATH]
+echo "Title dumped succesfully:\n$[GM9OUT]"

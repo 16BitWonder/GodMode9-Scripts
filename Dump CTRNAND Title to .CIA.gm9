@@ -1,0 +1,16 @@
+# Dump ctrnand title to .cia GM9 script
+# This will dump the user selected ctrnand title to a .cia
+# author: 8BitWonder
+# credits: d0k3 (For the scripts I referenced when making this, and GM9)
+
+set ERRORMSG      "Title dump failed"
+
+ask "Dump CTRNAND title to .cia in $[GM9OUT]?"
+set NUM1 "00040000"
+set NUM2 "00000000"
+input "Enter first 8 digits of the title you are dumping.\n(This is NOT case sensitive)\nYour options are:\n(00040000   0004009B)\n(00040010   000400DB)\n(0004001B   00040130)\n(00040030   00040138)" NUM1
+input "Enter last 8 digits of the title you are dumping.\n(This is NOT case sensitive)" NUM2
+find 1:/title/$[NUM1]/$[NUM2]/content/*.tmd TITLEPATH
+buildcia $[TITLEPATH]
+find $[GM9OUT]/$[NUM1]$[NUM2]* CIAPATH
+echo "Title dumped succesfully:\n$[CIAPATH]"

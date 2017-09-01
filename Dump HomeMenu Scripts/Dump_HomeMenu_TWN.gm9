@@ -1,0 +1,23 @@
+# homemenu cia dump GM9 script
+# This is for TWN 3DS.
+# This will create a homemenu's cia file in /gm9/out
+# This is useful for making customized homemenu's cia.
+# Guide's Link is below.
+# https://gbatemp.net/threads/complete-3ds-2ds-customization-guide.468268/
+# author : windows_server_2003/8BitWonder
+# Required write permission : none
+# Region : TWN only!!
+
+set CIA2 "0:/gm9/out/homemenu.cia"
+set ERRORMSG "Cancelled by user"
+ask "This script dumps the homemenu.cia.\ncontinue?"
+set ERRORMSG "Error:\#1 Not a USA 3DS or SysNAND is broken"
+find  1:/title/00040030/0000B102/content/*.tmd TMD
+set ERRORMSG "Error:\#2 SD card error or the tmd file is invalid"
+buildcia $[TMD]
+set ERRORMSG "Error:\#3 SD card error"
+find 0:/gm9/out/000400300000B102* CIA1
+mv -w -n $[CIA1] $[CIA2]
+set ERRORMSG "Error:\#4 SD card error"
+decrypt $[CIA2]
+echo "homemenu.cia dumped succesfully:\n$[CIA2]"
