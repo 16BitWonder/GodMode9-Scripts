@@ -6,6 +6,6 @@
 set ERRORMSG      "gbavc.sav backup failed"
 
 ask "Create a gbavc.sav backup in $[GM9OUT]? \n(This will overwrite any existing gbavc.sav!)"
-set OUTPATH 0:/gm9/out/gbavc.sav
+set OUTPATH $[GM9OUT]/gbavc.sav
 cp -w S:/gbavc.sav $[OUTPATH]
 echo "Backup created succesfully:\n$[OUTPATH]"
