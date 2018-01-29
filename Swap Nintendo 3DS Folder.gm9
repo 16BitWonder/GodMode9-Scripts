@@ -1,0 +1,21 @@
+# Swap "Nintendo 3DS" folder GM9 script
+# This will swap between user numbered Nintendo 3DS folders, useful if you have 300 titles installed in one Nintendo 3DS folder and want to install more in another
+# author: 8BitWonder
+# credits: d0k3 (For the scripts I referenced when making this, and GM9)
+
+set ERRORMSG      "Failed to swap folders\nFolder likely doesn't exist"
+
+ask "Swap your current Nintendo 3DS folder with another?\nFolders must be named 'Nintendo 3DSX'\nWith 'X' being a number or letter.\nEx: Nintendo 3DS0, Nintendo 3DS1, Nintendo 3DS2."
+
+# Designate desired and original folder
+set DESIRED "0"
+input "Swap with which Nintendo 3DS folder?\nYour current folder will be renamed as\nthe folder you swapped with." DESIRED
+find "0:/Nintendo 3DS$[DESIRED]" DESIREDPATH
+set ORIGINALPATH "0:/Nintendo 3DS"
+
+# Swap current folder with designated folder
+mv $[ORIGINALPATH] "0:/Nintendo 3DSTEMP"
+mv $[DESIREDPATH] $[ORIGINALPATH]
+mv "0:/Nintendo 3DSTEMP" $[DESIREDPATH]
+
+echo "Folders swapped successfully!"
