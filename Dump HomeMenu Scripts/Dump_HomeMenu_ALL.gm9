@@ -1,0 +1,63 @@
+# homemenu cia dump GM9 script
+# This will create a homemenu's cia file in /gm9/out
+# This is useful for making customized homemenu's cia.
+# Guide's Link is below.
+# https://gbatemp.net/threads/complete-3ds-2ds-customization-guide.468268/
+# author : windows_server_2003/8BitWonder/TurdPooCharger
+# Required write permission : none
+# Region : Region-Free
+
+set ERRORMSG "Cancelled by user"
+ask "This script dumps the homemenu.cia.\ncontinue?"
+set CIA2 "0:/gm9/out/homemenu.cia"
+set ERRORMSG "Error:\#1 Not a 3DS or SysNAND is broken"
+
+if chk $[REGION] "JPN"
+find 1:/title/00040030/00008202/content/*.tmd TMD
+end
+if chk $[REGION] "USA"
+find 1:/title/00040030/00008F02/content/*.tmd TMD
+end
+if chk $[REGION] "EUR"
+find 1:/title/00040030/00009802/content/*.tmd TMD
+end
+if chk $[REGION] "CHN"
+find 1:/title/00040030/0000A102/content/*.tmd TMD
+end
+if chk $[REGION] "KOR"
+find 1:/title/00040030/0000A902/content/*.tmd TMD
+end
+if chk $[REGION] "TWN"
+find 1:/title/00040030/0000B102/content/*.tmd TMD
+end
+if chk $[REGION] "UNK"
+chk "Aa" "Bb"
+end
+
+set ERRORMSG "Error:\#2 SD card error or the tmd file is invalid"
+buildcia $[TMD]
+set ERRORMSG "Error:\#3 SD card error"
+
+if chk $[REGION] "JPN"
+find 0:/gm9/out/0004003000008202* CIA1
+end
+if chk $[REGION] "USA"
+find 0:/gm9/out/0004003000008F02* CIA1
+end
+if chk $[REGION] "EUR"
+find 0:/gm9/out/0004003000009802* CIA1
+end
+if chk $[REGION] "CHN"
+find 0:/gm9/out/000400300000A102* CIA1
+end
+if chk $[REGION] "KOR"
+find 0:/gm9/out/000400300000A902* CIA1
+end
+if chk $[REGION] "TWN"
+find 0:/gm9/out/000400300000B102* CIA1
+end
+
+mv -w -n $[CIA1] $[CIA2]
+set ERRORMSG "Error:\#4 SD card error"
+decrypt $[CIA2]
+echo "homemenu.cia dumped succesfully:\n$[CIA2]"
