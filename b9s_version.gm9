@@ -1,0 +1,22 @@
+# GodMode9 "b9s_version"
+# Verify the version of boot9strap
+# author: yonaikerlol
+
+if chk $[HAX] "sighax"
+	imgmount S:/firm0.bin
+
+	shaget G:/header.bin VERSION
+	if chk $[VERSION] "7C2E1DC860858BF9C7285915957FE64AF3B1B812C57FCB2C417881D31EE4246C"
+		echo "SigHax/Boot9Strap v1.3"
+	elif chk $[VERSION] "9DDE2F7258FD1EE88EDE335ED781053F8925269D8720FE87BE4E2BD35B5990D3"
+		echo "SigHax/Boot9Strap v1.2"
+	elif chk $[VERSION] "893A8A5B9B87FD1869AAA0BAE9BCAA3C9102DFEC1FFACB2561321F53B6091884"
+		echo "SigHax/Boot9Strap v1.1"
+	elif chk $[VERSION] "5C3B0CD4FE0C4987AF764B9FEFAD8B8ED39929E6EA9A8F6D782C2409BB16930A"
+		echo "SigHax/Boot9Strap v1.0"
+	end
+
+	imgumount
+else
+	echo "Failed, You do not have boot9strap"
+end
